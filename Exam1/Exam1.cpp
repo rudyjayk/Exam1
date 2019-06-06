@@ -2,6 +2,11 @@
 and that any help I received adhered to the rules stated for this exam.*/
 
 
+#include "vehicle.h"
+#include "pickup.h"
+#include "racecar.h"
+#include "sedan.h"
+#include "wheel.h"
 
 #include <iostream>
 #include <string>
@@ -11,50 +16,15 @@ using std::endl;
 using std::string;
 using std::vector;
 
-class Wheel
-{
-private:
-	int _radius;
-public:
-	Wheel(int radius) { _radius = radius; }
-};
+
 
 // STEP 1: Complete the implementation of the Vehicle base class 
 // as described in the UML diagram
-class Vehicle
-{
-protected:
-	string _color;
-	int _topspeed;
-	vector<Wheel> wheels;
-
-public:
-	Vehicle(string color) {
-		// Complete the implementation
-	}
-	virtual string Description() = 0;
-};
 
 // STEP 2: Define the RaceCar, Sedan, and Pickup classes as described
 // in the UML diagram. Make sure to add functionality unique to each kind of class.
 // Be sure to use a separate header file and a CPP file for each class.
-class RaceCar {
-	//Top speed: 250mph
-	//Wheel radius: 305mm
 
-};
-
-class Sedan {
-	//Top speed: 95mph
-	//Wheel radius: 381mm
-
-};
-
-class Pickup {
-	//Top speed: 85mph
-	//Wheel radius: 432mm
-
-};
 
 
 int main()
@@ -67,12 +37,26 @@ int main()
 	//Garage[1] = ???
 	//Garage[2] = ???
 
+	Garage[0] = new RaceCar("Black");
+	Garage[1] = new Sedan("Blue", 5);
+	Garage[2] = new Pickup("Red", 2000);
+
 	for (int i = 0; i < 3; ++i)
 	{
 		// The method Description() should display an output like 
 		// "I am a red sedan (or racecar/pickup) and I can go 95 (or 250 or 85) mph"
-		cout << Garage[i]->Description();
+		Garage[i]->Description();
 
 		// add code to execute the "special" functionality of each class
+		if (typeid(Sedan) == typeid(*Garage[i])) {
+			dynamic_cast<Sedan*>(Garage[i])->addPassenger();
+		}
+		else if (typeid(Pickup) == typeid(*Garage[i])) {
+			dynamic_cast<Pickup*>(Garage[i])->addWeight(100);
+		}
+		else {
+			dynamic_cast<RaceCar*>(Garage[i])->revEngine();
+		}
+		cout << "\n\n";
 	}
 }

@@ -14,16 +14,19 @@ void Sedan::Description() {
 		
 }
 
-void Sedan::addPassenger() {
+bool Sedan::addPassenger() {
 
 	if (number_of_seats != 0) {
 
 		cout << "You have successfully added a passenger to the sedan!\n";
+		number_of_seats--;
+		return true;
 	}
 	else {
 
 		cout << "You do not have any more room for passengers!\n";
+		return false;
 	}
-	number_of_seats--;
+	
 	
 }

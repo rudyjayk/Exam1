@@ -13,7 +13,7 @@ public:
 
 	void Description(); //take note of change in string and void
 
-	void addPassenger();
+	bool addPassenger();
 };
 
 #endif // !SEDAN_H

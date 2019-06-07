@@ -1,4 +1,5 @@
 #include "pickup.h"
+#include <stdexcept>
 
 
 Pickup::Pickup(string color, int capacity) : Vehicle(color) {
@@ -13,10 +14,16 @@ void Pickup::Description() {
 		<< "Top speed: 85mph\n" << "Wheel radius: 432mm\n";
 }
 
-void Pickup::addWeight(int weight) {
+bool Pickup::addWeight(int weight) {
+	
+	if (weight >= hauling_capacity) {
 
+		cout << "Too much weight on Pickup Truck\n";
+		return false;
+	}
 	cout << "You have added " << weight << " to the Pickup Truck!\n";
 	cout << "You have " << hauling_capacity - weight << " capacity in the Pickup!\n";
+	return true;
 
 }
 

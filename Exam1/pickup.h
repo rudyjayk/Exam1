@@ -13,7 +13,7 @@ public:
 
 	void Description();
 
-	void addWeight(int weight);
+	bool addWeight(int weight);
 
 };
 
